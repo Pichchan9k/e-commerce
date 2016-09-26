@@ -1,3 +1,36 @@
-<h1>
-  {{title}}
-</h1>
+<h1>Date  {{today | date}}</h1>
+<!--<pre>{{ orderItems| json}}</pre>-->
+<div>
+  <table class='table'>
+    <tr>
+      <th>Item</th>
+      <th>Quatity</th>
+      <th>Unit Price</th>
+      <th>Total</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let orderItem of orderItems" >
+        <td>{{orderItem.item}}</td>
+        <td>{{orderItem.quantity | number}}</td>
+        <td>{{orderItem.unitPrice | currency}}</td>
+        <td>{{orderItem.quantity * orderItem.unitPrice | currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="3" id='table-total-text'>Total</td>
+        <td>{{total}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h1>Extra Info</h1>
+<section *ngIf='section1'> 
+<div>
+</div>
+</section>
+
+<section *ngIf='section2'>
+  <div>
+    <textarea name="textArea" cols="30" rows="10"></textarea>
+  </div>
+</section>
