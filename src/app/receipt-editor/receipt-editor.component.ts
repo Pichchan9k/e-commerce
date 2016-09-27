@@ -1,20 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params  } from '@angular/router';
+
 import { Order } from '../order';
 import { OrderItem } from '../order-item';
 import { OrderService } from '../order.service';
+
 @Component({
   selector: 'app-receipt-editor',
   templateUrl: './receipt-editor.component.html',
   styleUrls: ['./receipt-editor.component.css']
 })
 export class ReceiptEditorComponent implements OnInit {
-  
+  is_new:boolean
   formDate:string
   order:Order
-  constructor(private orderService:OrderService, private router:Router) { }
+  constructor(private orderService:OrderService, private router:Router, private route:ActivatedRoute) { }
   ngOnInit() {
-    this.order = new Order([])
+    this.is_new = true
+    this.route.params.forEach((params:Params)=>{
+      //params['id']
+      if(params['id'] == 'new')
+        this.order = new Order([])
+      else
+        this.order = this.orderService.getOrder(params['id'])
+
+    })
+
+    //this.order = new Order([])
     this.formDate = this.order.create_time.toISOString().substring(0, 10)
   }
 
@@ -30,11 +42,15 @@ export class ReceiptEditorComponent implements OnInit {
   save(){
     if (!this.validate())
       return false
-
+      
+    if (!this.is_new)
       this.orderService.createOrder(this.order)
-
+    else
+      this.orderService.updateOrder(this.order)
+  
     return true
   }
+
 
   validate(){
     //check form date

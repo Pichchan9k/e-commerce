@@ -13,7 +13,8 @@ import { ReceiptComponent } from './receipt/receipt.component';
 import { ReceiptSelectorComponent } from './receipt-selector/receipt-selector.component'
 import {routing} from "./app.routing";
 import { AboutComponent } from './about/about.component';
-import { ReceiptEditorComponent } from './receipt-editor/receipt-editor.component' // import routing,
+import { ReceiptEditorComponent } from './receipt-editor/receipt-editor.component';
+import { MyDirectiveDirective } from './my-directive.directive' // import routing,
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReceiptEditorComponent } from './receipt-editor/receipt-editor.componen
     ReceiptComponent,
     ReceiptSelectorComponent,
     AboutComponent,
-    ReceiptEditorComponent
+    ReceiptEditorComponent,
+    MyDirectiveDirective
   ],
   imports: [
     BrowserModule,

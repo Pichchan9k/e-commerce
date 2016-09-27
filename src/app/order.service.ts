@@ -70,7 +70,6 @@ export class OrderService {
   getOrder(id:string){
     console.log('find: ' + id)
     return this.getAllOrder().find( item =>{
-      
       return item.id == id;
     })
   }
@@ -78,6 +77,16 @@ export class OrderService {
   createOrder(order:Order){
     this._orders.push(order)
     this.save()
+  }
+  
+  updateOrder(order:Order){
+      let index = this._orders.findIndex( item => {
+        if(item.id == order.id)
+          return true;
+      })
+      this._orders[index] = order
+      this.save()
+
   }
 
   loadData(orders_json_array:Array<any>){
