@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { Order } from '../order';
 import { OrderItem } from '../order-item';
 import { OrderService } from '../order.service';
@@ -12,7 +12,7 @@ export class ReceiptEditorComponent implements OnInit {
   
   formDate:string
   order:Order
-  constructor(private orderService:OrderService) { }
+  constructor(private orderService:OrderService, private router:Router) { }
   ngOnInit() {
     this.order = new Order([])
     this.formDate = this.order.create_time.toISOString().substring(0, 10)
@@ -20,7 +20,8 @@ export class ReceiptEditorComponent implements OnInit {
 
   onSave(){
     if (this.save())
-      alert('Save Success')
+      this.router.navigate(["home"])
+
     else
       alert('Someting Wrong')
   }
