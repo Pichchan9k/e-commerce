@@ -1,13 +1,11 @@
 export class OrderItem {
     item:string
     quantity:number
-    unitPrice:number
+    unit_price:number
     
-    constructor(item:string,quatity:number,unitPrice:number){
+    constructor(item:string,quatity:number,unit_price:number){
         this.item = item
         this.quantity = quatity
-        this.unitPrice = unitPrice
+        this.unit_price = unit_price
     }
-    
-    
 }

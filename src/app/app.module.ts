@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { MyPipePipe } from './my-pipe.pipe';
+import { TotalPipePipe } from './total-pipe.pipe';
+import { TaxPipePipe } from './tax-pipe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyPipePipe
+    TotalPipePipe,
+    TaxPipePipe
   ],
   imports: [
     BrowserModule,

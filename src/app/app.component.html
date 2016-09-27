@@ -1,5 +1,4 @@
-<h1>Date  {{today | date}}</h1>
-<!--<pre>{{ orderItems| json}}</pre>-->
+<h1>Date  {{order.create_time | date}}</h1>
 <div>
   <table class='table table-bordered'>
     <tr>
@@ -9,28 +8,24 @@
       <th>Total</th>
     </tr>
     <tbody>
-      <tr *ngFor="let orderItem of orderItems" >
+      <tr *ngFor="let orderItem of order.items" >
         <td>{{orderItem.item}}</td>
         <td>{{orderItem.quantity | number}}</td>
-        <td>{{orderItem.unitPrice | currency}}</td>
-        <td>{{orderItem.quantity * orderItem.unitPrice | currency}}</td>
+        <td>{{orderItem.unit_price | currency:"MYR"}}</td>
+        <td>{{orderItem.quantity * orderItem.unit_price | currency:"MYR"}}</td>
       </tr>
       <tr>
         <td colspan="3" id='table-total-text'>Total</td>
-        <td>{{total}}</td>
+        <td>{{ order.items | totalPipe | currency:"MYR"}}</td>
+      </tr>
+      <tr>
+        <td colspan="3" id='table-total-text'>Tax</td>
+        <td>{{ order.items | totalPipe | taxPipe:6 | currency:"MYR" }}</td>
+      </tr>
+      <tr>
+        <td colspan="3" id='table-total-text'>Total</td>
+        <td>{{ (order.items | totalPipe) + (order.items | totalPipe | taxPipe:6) | currency:"MYR" }}</td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<h1>Extra Info</h1>
-<section *ngIf='section1'> 
-<div>
-</div>
-</section>
-
-<section *ngIf='section2'>
-  <div>
-    <textarea name="textArea" cols="30" rows="10"></textarea>
-  </div>
-</section>

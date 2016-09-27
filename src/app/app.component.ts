@@ -10,19 +10,15 @@ import { OrderItem } from './order-item';
 })
 
 export class AppComponent {
-  orderItems:Array<OrderItem>
-  today = new Date()
-  total = 0
-  section1 = true
-  section2 = false
+  order:Order
   
   constructor(){
-    this.orderItems = [
-      { item: 'Soap', quantity:10, unitPrice: 30 },
-      { item: 'Shampoo', quantity:20, unitPrice: 35 },
-      { item: 'Shirt', quantity:5, unitPrice: 120 },
-      { item: 'Samsung Note7', quantity:1, unitPrice: 24900 }      
-    ]
+    this.order = new Order([
+      new OrderItem('Samsung Note7',1,2490),
+      new OrderItem('MacBook',1,4900),
+      new OrderItem('Ipad Mini',2,1450)
+    ], new Date("2015-12-04"));
+    
   }
-
+  
 }
