@@ -28,7 +28,7 @@ const appRoute:Routes = [
         path:'about',
         component:AboutComponent
     },{
-        path:'edit',
+        path:'edit/:id',
         component:ReceiptEditorComponent
     }
 
