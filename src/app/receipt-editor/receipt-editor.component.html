@@ -1,22 +1,31 @@
 <h1>Edit</h1>
 <div class='row' >
   <div class='col-md-12'>
-    <input type='date' class='form-control' [(ngModel)]='order.create_time'>
+    <input type='date' class='form-control' [(ngModel)]='formDate'>
   </div>   
 </div>
 
 <!-- item editor -->
-  <table class='table'>
-    <tr *ngFor='let item of order.items; let i = index'>
-          <td><input type='text' class='form-control' [(ngModel)]='item.item'/></td>
-          <td><input type='number' class='form-control' [(ngModel)]='item.quantity'/></td>
-          <td><input type='number' class='form-control' [(ngModel)]='item.unit_price'/></td>
-          <td>{{item.quantity * item.unit_price}}</td>
-          <td><button class='btn btn-danger' (click)='removeItem(i)'>X</button></td>
-    </tr>
+  <table class='table table-striped'>
+    <thead>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total</th>
+    </thead>
+    <tbody>
+      <tr *ngFor='let item of order.items; let i = index'>
+        <td><input type='text' class='form-control' [(ngModel)]='item.item'/></td>
+        <td><input type='number' class='form-control' [(ngModel)]='item.quantity'/></td>
+        <td><input type='number' class='form-control' [(ngModel)]='item.unit_price'/></td>
+        <td>{{item.quantity * item.unit_price}}</td>
+        <td><button class='btn btn-danger' (click)='removeItem(i)'>X</button></td>
+      </tr>
+    </tbody>
   </table>
   <button class='btn btn-primary' (click)='addItem()'>Add</button>
   <!--end item editor-->
 
   <pre>{{order | json}}</pre>
+  <pre>{{formDate}}</pre>
   

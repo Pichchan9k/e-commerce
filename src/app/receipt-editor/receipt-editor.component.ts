@@ -9,13 +9,14 @@ import { OrderItem } from '../order-item';
   styleUrls: ['./receipt-editor.component.css']
 })
 export class ReceiptEditorComponent implements OnInit {
-
   
+  formDate:string
   order:Order
   constructor() { }
+  
   ngOnInit() {
     this.order = new Order([])
-    
+    this.formDate = this.order.create_time.toISOString().substring(0, 10)
   }
   
   //for save order 
@@ -24,7 +25,18 @@ export class ReceiptEditorComponent implements OnInit {
   }
 
   validate(){
-
+    //check form date
+    if (this.formDate != "" ) {
+      return true
+    } else {
+      return false
+    }
+    //check order.items
+    if (this.order.items){
+      return true
+    } else {
+      return false
+    }
   }
 
   // for add orderItem
