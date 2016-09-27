@@ -24,7 +24,7 @@ describe('Pipe: TotalPipe', () => {
   });
 
     it('should get total with quantity > 1', () => {
-    let items:Array<OrderItem> = [
+    let items:Array<OrderItem> = [ 
       new OrderItem('Samsung Note7',1,2490),
       new OrderItem('MacBook',1,4900),
       new OrderItem('Ipad Mini',2,1450)
