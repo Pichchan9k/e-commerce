@@ -24,8 +24,11 @@
     </tbody>
   </table>
   <button class='btn btn-primary' (click)='addItem()'>Add</button>
+  <div>
+    <button class='btn btn-success' (click)='onSave()'>Save</button>
+  </div> 
   <!--end item editor-->
 
   <pre>{{order | json}}</pre>
-  <pre>{{formDate}}</pre>
+  <pre>{{formDate  | json}}</pre>
   

@@ -38,7 +38,7 @@ export class OrderService {
   private _orders:Array<Order>;
 
   //save data to localstorage
-  save(){
+  private save(){
     localStorage[LOCAL_KEY] = JSON.stringify(this._orders)
   }
 
@@ -73,6 +73,11 @@ export class OrderService {
       
       return item.id == id;
     })
+  }
+
+  createOrder(order:Order){
+    this._orders.push(order)
+    this.save()
   }
 
   loadData(orders_json_array:Array<any>){
