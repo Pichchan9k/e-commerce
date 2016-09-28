@@ -13,12 +13,19 @@ export class ReceiptSelectorComponent implements OnInit {
   orders:Array<Order>
 
   //inject the service instance in constructor
-  constructor( os:OrderService  ) {
+  constructor(private os:OrderService  ) {
       this.orders = os.load()
   }
 
    //init when done created a component
   ngOnInit() {
+  }
+
+
+  loadFromUrl(){
+    this.os.loadDataformUrl( orders =>{
+      this.orders = orders
+    })
   }
 
 }

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http'
+
 import { Order } from "./order"
 import { OrderItem } from "./order-item"
 
@@ -27,12 +29,16 @@ const ORDERS = [
     ]
 
 const LOCAL_KEY:string = "order_key"
+const JSON_PATH:string = "data/orders.json"
 @Injectable()
 export class OrderService {
    
-  constructor() {
+   
+   
+  constructor(private http:Http) {
     //make everytime we call this service load all data to _orders 
     this.load();
+    
   }
 
   private _orders:Array<Order>;
@@ -104,5 +110,13 @@ export class OrderService {
   }
   //then tea break :) 
 
+  loadDataformUrl(callback:Function){
 
+    this.http.get(JSON_PATH).subscribe( data =>{
+        this._orders =  this.loadData(data.json())
+        callback(this._orders)
+        this.save()
+    })
+        
+  }
 }
