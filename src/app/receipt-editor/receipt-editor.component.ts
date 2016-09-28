@@ -16,13 +16,20 @@ export class ReceiptEditorComponent implements OnInit {
   order:Order
   constructor(private orderService:OrderService, private router:Router, private route:ActivatedRoute) { }
   ngOnInit() {
-    this.is_new = true
+    
     this.route.params.forEach((params:Params)=>{
       //params['id']
-      if(params['id'] == 'new')
+      if(params['id'] == 'new') {
         this.order = new Order([])
-      else
+        this.is_new = true
+      }
+        
+        
+      else {
         this.order = this.orderService.getOrder(params['id'])
+        this.is_new = false
+      }
+        
 
     })
 
@@ -43,7 +50,7 @@ export class ReceiptEditorComponent implements OnInit {
     if (!this.validate())
       return false
       
-    if (!this.is_new)
+    if (this.is_new)
       this.orderService.createOrder(this.order)
     else
       this.orderService.updateOrder(this.order)
@@ -71,7 +78,7 @@ export class ReceiptEditorComponent implements OnInit {
 
   // for add orderItem
   addItem(){
-    this.order.items.push( new OrderItem('', 1, 0))
+    this.order.items.push( new OrderItem('', 1, 0)  )
   }
 
   removeItem(index:number){
